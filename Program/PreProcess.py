@@ -1,8 +1,4 @@
 import pandas as pd
-from sklearn.feature_selection import SelectKBest, chi2
-
-def processFile(originalFile):
-    return None
 
 def categorize_variable_types(data):
     variable_types = {}
@@ -19,4 +15,11 @@ def categorize_variable_types(data):
             variable_types[column] = 'nominal'
         else:  # Continuous
             variable_types[column] = 'continuous'
-    return variable_types
+    
+    # Convert the dictionary to a DataFrame
+    df = pd.DataFrame(variable_types.items(), columns=['Attribute', 'Data Type'])
+    return df
+    
+data = pd.read_csv('housing.csv')
+processed_data = categorize_variable_types(data)
+print(processed_data)
