@@ -1,6 +1,6 @@
 import pandas as pd
 
-def categorize_variable_types(data):
+def processFile(data):
     variable_types = {}
     for column in data.columns:
         unique_values = data[column].nunique()
