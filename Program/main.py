@@ -8,9 +8,8 @@ def main():
     print("Welcome to our data set predictor!")
     fileName = UserInput.getFileName()
     originalFile = UserInput.openFile(fileName)
-    print(fileName)
     guessColumn = UserInput.getGuessColumn(originalFile,fileName)
-
+    colRemovedFile = UserInput.removeColumns(originalFile,fileName)
     processedFile = PreProcess.processFile(originalFile)
     results = Classification.makeGuesses(processedFile,guessColumn)
     Classification.printAccuracy(processedFile,results)
