@@ -1,12 +1,20 @@
+import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
 def makeGuesses(processed_file, guess_column):
+    # File info
+    processed_file.info()
+    processed_file.head()
+
+    # CHeck if column exists
+    if guess_column not in processed_file.columns:
+        raise ValueError(f"Column '{guess_column}' not found in the DataFrame.")
 
     # Split data into features and target
-    y = processed_file[guess_column]
     X = processed_file.drop(guess_column, axis=1)
+    y = processed_file[guess_column]
 
     # Split the data
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
@@ -24,8 +32,10 @@ def makeGuesses(processed_file, guess_column):
 
 def printAcurracy(result):
     mse = mean_squared_error(result[0], result[1])
+    rmse = np.sqrt(mse)
     r2 = r2_score(result[0], result[1])
     print(f"Mean Squared Error: {mse}")
+    print(f"RMSE: {rmse}")
     print(f"R^2 Score = {r2}")
 
 

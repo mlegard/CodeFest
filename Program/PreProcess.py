@@ -1,22 +1,20 @@
 import pandas as pd
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+from sklearn.impute import SimpleImputer
+
 
 def processFile(data):
-    variable_types = {}
-    for column in data.columns:
-        unique_values = data[column].nunique()
-        data_type = data[column].dtype
+    # Handle missing values (example: numeric imputation)
+    for col in data.select_dtypes(include=['float64', 'int64']):
+        data[col].fillna(data[col].mean(), inplace=True)
 
-        # Automatically categorize variable types
-        if unique_values == 2:  # Binary
-            variable_types[column] = 'binary'
-        elif data_type == 'object':  # Nominal
-            variable_types[column] = 'nominal'
-        elif unique_values > 2 and unique_values < 10:  # Nominal (or categorical with fewer categories)
-            variable_types[column] = 'nominal'
-        else:  # Continuous
-            variable_types[column] = 'continuous'
-    
-    # Convert the dictionary to a DataFrame
-    df = pd.DataFrame(variable_types.items(), columns=['Attribute', 'Data Type'])
-    return df
+    # Encode categorical data
+    for col in data.select_dtypes(include=['object']):
+        if data[col].nunique() <= 10:  # arbitrary cutoff for categorical vs nominal
+            le = LabelEncoder()
+            data[col] = le.fit_transform(data[col])
+        else:
+            data = pd.get_dummies(data, columns=[col], drop_first=True)  # One-hot encoding
+
+    return data
 
