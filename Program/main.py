@@ -9,7 +9,7 @@ def main():
     fileName = UserInput.getFileName()
     originalFile = UserInput.openFile(fileName)
     guessColumn = UserInput.getGuessColumn(originalFile,fileName)
-    colRemovedFile = UserInput.removeColumns(originalFile,fileName)
+    colRemovedFile = UserInput.removeColumns(originalFile,fileName,guessColumn)
     processedFile = PreProcess.processFile(originalFile)
     results = Classification.makeGuesses(processedFile,guessColumn)
     Classification.printAccuracy(processedFile,results)
