@@ -10,9 +10,10 @@ def main():
     originalFile = UserInput.openFile(fileName)
     guessColumn = UserInput.getGuessColumn(originalFile,fileName)
     colRemovedFile = UserInput.removeColumns(originalFile,fileName,guessColumn)
-    processedFile = PreProcess.processFile(originalFile)
+    processedFile = PreProcess.processFile(colRemovedFile)
+    print(processedFile)
     results = Classification.makeGuesses(processedFile,guessColumn)
-    Classification.printAccuracy(processedFile,results)
+    Classification.printAcurracy(results)
 
 if __name__ == "__main__":
     main()
