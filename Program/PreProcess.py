@@ -19,7 +19,4 @@ def categorize_variable_types(data):
     # Convert the dictionary to a DataFrame
     df = pd.DataFrame(variable_types.items(), columns=['Attribute', 'Data Type'])
     return df
-    
-data = pd.read_csv('housing.csv')
-processed_data = categorize_variable_types(data)
-print(processed_data)
+
