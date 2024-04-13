@@ -14,31 +14,31 @@ def openFile(fileName):
 
 
 
-def getValidColumn(file,fileName):
+def getValidColumn(file,fileName,guessColumn):
     while (True):
         chosenCol = input("Please enter a valid column from file " + fileName+ " ")
         for colName in file.columns:
-            if (colName.lower() == chosenCol.lower()):
+            if (colName.lower() == chosenCol.lower() and chosenCol.lower() != guessColumn.lower()):
                 return colName
 
 
 def getGuessColumn(file,fileName):
     print("What guess column?")
-    return getValidColumn(file,fileName)
+    return getValidColumn(file,fileName,"")
 
 
-def removeColumns(originalFile, fileName):
-    wantsToRemove = True
+def removeColumns(originalFile, fileName,guessColumn):
+
     newFile = originalFile
     while(True):
         userInput = input("Remove a column? (Y/N)")
         if(userInput == 'N' or userInput == 'n'): return newFile
-        newFile = removeColumn(newFile,fileName)
+        newFile = removeColumn(newFile,fileName,guessColumn)
         print(newFile.head())
 
 
-def removeColumn(file,fileName):
-    chosenCol = getValidColumn(file,fileName)
+def removeColumn(file,fileName,guessColumn):
+    chosenCol = getValidColumn(file,fileName,guessColumn)
     newFile =file.drop(chosenCol,axis =1)
     return newFile
 
