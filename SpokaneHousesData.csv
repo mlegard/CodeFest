@@ -1,0 +1,11 @@
+﻿Zipcode,House_Cost,Rooms,Baths,Sqft,Year_Built,Heating,Cooling
+99223,"340,000",3,2,1600,1958,"Gas Hot Air Furnace, Forced Air",Central Air
+99223,"599,000",5,3,2700,1989,"Gas Hot Air Furnace, Forced Air",Central Air
+99208,"419,950",3,3,1880,2023,"Electric, Forced Air, Heat Pump",
+99202,"340,000",3,1,2270,1909,"Gas Hot Air Furnace, Forced Air, Prog. Therm.",
+99217,"649,999",5,3,2800,2003,Forced Air,Central Air
+99201,"649,000",3,3,1678,2010,"Gas Hot Air Furnace, Forced Air",Central Air
+99208,"472,995",5,3,2770,2023,"Electric, Forced Air, Heat Pump, Prog. Therm",
+99205,"353,399",3,3,1735,1905,"Electric, Forced Air",
+99202,"265,000",3,1,1178,1998,"Gas Hot Air Furnace, Forced Air",
+99203,"489,900",4,2,2094,1941,"Gas Hot Air Furnace, Forced Air",
