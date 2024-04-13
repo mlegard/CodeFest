@@ -2,6 +2,7 @@
 import Classification
 import PreProcess
 import UserInput
+from Codefest.Program import Methods
 
 
 def main():
@@ -14,6 +15,7 @@ def main():
     print(processedFile)
     results = Classification.makeGuesses(processedFile,guessColumn)
     Classification.printAcurracy(results)
+    Classification.plotModelDiagnostics(results[0],results[1])
 
 if __name__ == "__main__":
     main()
