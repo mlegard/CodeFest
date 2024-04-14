@@ -11,8 +11,8 @@ def main():
     guessColumn = UserInput.getGuessColumn(originalFile,fileName)
     colRemovedFile = UserInput.removeColumns(originalFile,fileName,guessColumn)
     processedFile = PreProcess.processFile(colRemovedFile)
-    print(processedFile)
-    results = Classification.linearRegression_classification(processedFile, guessColumn)
+    dataType = UserInput.getGuessType()
+    results = Classification.pickClassification(processedFile, guessColumn,dataType)
     Classification.printAcurracy(results)
     Classification.plotModelDiagnostics(results[0],results[1])
 

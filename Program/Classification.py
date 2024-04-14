@@ -10,12 +10,10 @@ import seaborn as sns
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 
 
-def pickClassification(processed_file, guess_column):
-    guessType = processed_file[guess_column].dtype
-    print(guessType)#NOT PRINTING THE TYPE, but instead it prints int64 ect
-    #if(guessType == "binary" or guessType == "nominal"): return knn_classification(processed_file, guess_column)
-    #if(guessType == "continuous"): return linearRegression_classification(processed_file,guess_column)
-    print("GOT HERE")
+def pickClassification(processed_file, guess_column, dataType):
+    if(dataType == "binary"): return knn_classification(processed_file, guess_column)
+    if(dataType == "continuous"): return linearRegression_classification(processed_file,guess_column)
+
 
 
 def preprocess_for_knn(data, guess_column):
