@@ -17,7 +17,6 @@ def pickClassification(processed_file, guess_column, dataType):
 
 
 def preprocess_for_knn(data, guess_column):
-
     # Create a copy of the data to avoid modifying the original dataset
     processed_data = data.copy()
 
