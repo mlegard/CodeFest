@@ -3,6 +3,8 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
+import matplotlib.pyplot as plt
+import seaborn as sns
 def makeGuesses(processed_file, guess_column):
     # File info
     processed_file.info()
@@ -38,6 +40,22 @@ def printAcurracy(result):
     print(f"RMSE: {rmse}")
     print(f"R^2 Score = {r2}")
 
+def plotModelDiagnostics(actual, predicted):
+    plt.figure(figsize=(14, 6))
 
+    plt.subplot(1, 2, 1)
+    sns.scatterplot(x=actual, y=predicted)
+    plt.plot([actual.min(), actual.max()], [actual.min(), actual.max()], 'k--', lw=2)
+    plt.xlabel('Actual Values')
+    plt.ylabel('Predicted Values')
+    plt.title('Actual vs Predicted Values')
 
+    plt.subplot(1, 2, 2)
+    residuals = actual - predicted
+    sns.histplot(residuals, kde=True)
+    plt.xlabel('Residuals')
+    plt.ylabel('Frequency')
+    plt.title('Distribution of Residuals')
 
+    plt.tight_layout()
+    plt.show()
