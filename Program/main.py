@@ -2,7 +2,6 @@
 import Classification
 import PreProcess
 import UserInput
-from Codefest.Program import Methods
 
 
 def main():
