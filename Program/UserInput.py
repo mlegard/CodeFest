@@ -15,6 +15,7 @@ def openFile(fileName):
 
 
 def getValidColumn(file,fileName,guessColumn):
+    print("Available columns in the file: ", file.columns.tolist())
     while (True):
         chosenCol = input("Please enter a valid column from file " + fileName+ " ")
         for colName in file.columns:
