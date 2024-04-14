@@ -19,6 +19,7 @@ def main():
         Classification.plotModelDiagnostics(results[0],results[1])
     else:
         Classification.printKnnAccuracy(results[0], results[1])
+        Classification.plotKnnAccuracy(results[0],results[1])
 
 if __name__ == "__main__":
     main()

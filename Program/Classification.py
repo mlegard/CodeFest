@@ -3,7 +3,7 @@ import pandas as pd
 from sklearn.impute import SimpleImputer
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error, r2_score, accuracy_score
+from sklearn.metrics import mean_squared_error, r2_score, accuracy_score, confusion_matrix
 from sklearn.neighbors import KNeighborsClassifier
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -97,3 +97,27 @@ def printKnnAccuracy(y_test, y_pred):
 
     # Print the accuracy score
     print("Accuracy:", accuracy)
+
+
+def plotKnnAccuracy(y_test, y_pred):
+    # Calculate accuracy
+    accuracy = accuracy_score(y_test, y_pred) * 100  # convert to percentage
+
+    # Set up the matplotlib figure
+    plt.figure(figsize=(8, 6))
+
+    # Create a bar chart
+    plt.bar(['Accuracy'], [accuracy], color='blue')
+
+    # Add a text label above the bar to show the percentage
+    plt.text(0, accuracy + 0.5, f'{accuracy:.2f}%', ha='center', va='bottom')
+
+    # Set limits for the y-axis
+    plt.ylim(0, 100)  # Set y-axis to show percentages from 0 to 100
+
+    # Add titles and labels
+    plt.ylabel('Percentage')
+    plt.title('kNN Classification Accuracy')
+
+    # Show the plot
+    plt.show()
