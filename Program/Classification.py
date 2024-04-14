@@ -2,9 +2,34 @@ import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.metrics import mean_squared_error, r2_score, accuracy_score
+from sklearn.neighbors import KNeighborsClassifier
 import matplotlib.pyplot as plt
 import seaborn as sns
+
+
+def knn_classification(data, target_variable, k=5, test_size=0.2, random_state=42):
+    # Separate features and target variable
+    X = data.drop(columns=[target_variable])
+    y = data[target_variable]
+    
+    # Split the data into training and testing sets
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size, random_state=random_state)
+    
+    # Initialize the kNN classifier
+    knn_classifier = KNeighborsClassifier(n_neighbors=k)
+    
+    # Train the classifier
+    knn_classifier.fit(X_train, y_train)
+    
+    # Make predictions
+    y_pred = knn_classifier.predict(X_test)
+    
+    # Calculate accuracy
+    accuracy = accuracy_score(y_test, y_pred)
+    
+    return accuracy
+    
 def makeGuesses(processed_file, guess_column):
     # File info
     processed_file.info()
