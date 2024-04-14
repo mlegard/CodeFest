@@ -13,13 +13,10 @@ from sklearn.preprocessing import LabelEncoder, StandardScaler
 def pickClassification(processed_file, guess_column):
     guessType = processed_file[guess_column].dtype
     print(guessType)#NOT PRINTING THE TYPE, but instead it prints int64 ect
-    #if(guessType == "binary" or guessType == "nominal"): return knn_classification(processed_file, guess_column)
+    #if(guessType == "binary"): return knn_classification(processed_file, guess_column)
     #if(guessType == "continuous"): return linearRegression_classification(processed_file,guess_column)
-    print("GOT HERE")
-
 
 def preprocess_for_knn(data, guess_column):
-
     # Create a copy of the data to avoid modifying the original dataset
     processed_data = data.copy()
 
