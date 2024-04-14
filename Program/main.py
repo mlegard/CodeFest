@@ -13,8 +13,12 @@ def main():
     processedFile = PreProcess.processFile(colRemovedFile)
     dataType = UserInput.getGuessType()
     results = Classification.pickClassification(processedFile, guessColumn,dataType)
-    Classification.printAcurracy(results)
-    Classification.plotModelDiagnostics(results[0],results[1])
+    # print(results)
+    if dataType == 'continuous':
+        Classification.printAcurracy(results)
+        Classification.plotModelDiagnostics(results[0],results[1])
+    else:
+        Classification.printKnnAccuracy(results[0], results[1])
 
 if __name__ == "__main__":
     main()

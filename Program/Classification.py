@@ -14,36 +14,6 @@ def pickClassification(processed_file, guess_column, dataType):
     if(dataType == "binary"): return knn_classification(processed_file, guess_column)
     if(dataType == "continuous"): return linearRegression_classification(processed_file,guess_column)
 
-
-
-def preprocess_for_knn(data, guess_column):
-    # Create a copy of the data to avoid modifying the original dataset
-    processed_data = data.copy()
-
-    # Handle missing values
-    # Numeric columns: fill with the mean
-    num_imputer = SimpleImputer(strategy='mean')
-    for col in processed_data.select_dtypes(include=['int64', 'float64']).columns:
-        processed_data[col] = num_imputer.fit_transform(processed_data[[col]])
-
-    # Categorical columns: fill with the most frequent value
-    cat_imputer = SimpleImputer(strategy='most_frequent')
-    for col in processed_data.select_dtypes(include=['object']).columns:
-        processed_data[col] = cat_imputer.fit_transform(processed_data[[col]])
-
-    # Encode categorical variables
-    le = LabelEncoder()
-    for col in processed_data.select_dtypes(include=['object']).columns:
-        if col != guess_column:
-            processed_data[col] = le.fit_transform(processed_data[col])
-
-    # Scale numerical features - important for kNN
-    scaler = StandardScaler()
-    processed_data[processed_data.columns.difference([guess_column])] = scaler.fit_transform(
-        processed_data[processed_data.columns.difference([guess_column])]
-    )
-
-    return processed_data
     
 def linearRegression_classification(processed_file, guess_column):
     # File info
@@ -100,6 +70,25 @@ def plotModelDiagnostics(actual, predicted):
 
     plt.tight_layout()
     plt.show()
+
+def knn_classification(processed_file, guess_column):
+    # Separate features and target variable
+    X = processed_file.drop(columns=[guess_column])
+    y = processed_file[guess_column]
+
+    # Split the data into training and testing sets
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=.2, random_state=42)
+
+    # Initialize the kNN classifier
+    knn_classifier = KNeighborsClassifier(n_neighbors=5)
+
+    # Train the classifier
+    knn_classifier.fit(X_train, y_train)
+
+    # Make predictions
+    y_pred = knn_classifier.predict(X_test)
+
+    return y_test, y_pred
 
 
 def printKnnAccuracy(y_test, y_pred):

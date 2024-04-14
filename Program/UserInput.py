@@ -31,9 +31,9 @@ def getGuessColumn(file,fileName):
 def getGuessType():
 
     while (True):
-        dataType = input("What is the guess column datatype? (must be binomial or continuous)")
+        dataType = input("What is the guess column datatype? (must be binary or continuous)")
         if(dataType.lower() == "continuous"): return dataType
-        if(dataType.lower() == "binomial"): return dataType
+        if(dataType.lower() == "binary"): return dataType
 
 def removeColumns(originalFile, fileName,guessColumn):
 
