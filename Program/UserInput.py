@@ -24,7 +24,7 @@ def getValidColumn(file,fileName,guessColumn):
 
 
 def getGuessColumn(file,fileName):
-    print("What guess column?")
+    print("What guess column? (datatype of target variable must be binomial or continuous)")
     return getValidColumn(file,fileName,"")
 
 
