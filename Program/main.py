@@ -11,8 +11,8 @@ def main():
     guessColumn = UserInput.getGuessColumn(originalFile,fileName)
     colRemovedFile = UserInput.removeColumns(originalFile,fileName,guessColumn)
     processedFile = PreProcess.processFile(colRemovedFile)
-    print(processedFile)
-    results = Classification.makeGuesses(processedFile,guessColumn)
+    #print(processedFile)
+    results = Classification.pickClassification(processedFile, guessColumn)
     Classification.printAcurracy(results)
     Classification.plotModelDiagnostics(results[0],results[1])
 
